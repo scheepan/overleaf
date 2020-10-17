@@ -2,10 +2,18 @@
 FROM archlinux:latest
 
 # Set maintainer
-LABEL maintainer='BGameiro <projects+docker@bgameiro.me>'
+LABEL maintainer='scheepan <scheepan@web.de>'
 
 # Update mirrors and packages. Install jupyterlab
+RUN pacman --noconfirm -Syyu pip
 RUN pacman --noconfirm -Syyu jupyterlab
+
+COPY requirements.txt ./
+
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+COPY . .
 
 # Build the lab
 RUN jupyter lab build --minimize=False
