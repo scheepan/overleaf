@@ -5,7 +5,7 @@ FROM archlinux:latest
 LABEL maintainer='scheepan <scheepan@web.de>'
 
 # Update mirrors and packages. Install jupyterlab
-RUN pacman --noconfirm -Syyu pip
+RUN pacman --noconfirm -Syyu python-pip
 RUN pacman --noconfirm -Syyu jupyterlab
 
 COPY requirements.txt ./
